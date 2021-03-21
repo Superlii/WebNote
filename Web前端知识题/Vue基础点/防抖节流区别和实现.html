@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <input type="text" id="inp"/>
+</body>
+<script>
+
+    //防抖动
+// function debounce(fn)
+// {
+//     console.log(this)
+// let timeout = null
+// return function(){
+
+//     clearTimeout(timeout)
+//     timeout = setTimeout(() => {
+//         fn.apply(this,arguments)
+//     },1000) 
+// }
+// }
+// function sayHi(){
+//     console.log("防抖动成功")
+// }
+// var inp = document.getElementById('inp')
+// inp.addEventListener('input',debounce(sayHi))
+
+function throttle (fn){
+    let cnaRun = true; //通过闭包保存一个检测上个任务是否完成的标记
+    return function(fn){
+      if(!canRun)return;
+      canRun = false;
+      setTimeout(() => {
+         fn.apply(this, [arguments]);
+      },100)
+      canRun = true;
+    }
+}
+function success(){
+    console.log("节流成功")
+}
+window.addEventListener('resize',throttle(success))
+</script>
+</html>
