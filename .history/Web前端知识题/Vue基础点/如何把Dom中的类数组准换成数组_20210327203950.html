@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用foreach()方法把类数组对象转换为数组</title>
+    <script>
+        window.onload=function(){
+            debugger
+            var odivs=document.getElementsByTagName("div");
+            console.log(odivs) //HTMLCollection(4)[div, div, div, div]
+            console.log(typeof(odivs))
+            let odivs2=Array.prototype.forEach.call(odivs,function(item,index){
+                console.log(item,index);
+                odivs2.push(item)
+            })
+            console.log(odivs2)
+        }
+    </script>
+</head>
+<body>
+    <div>div1</div>
+    <div>div2</div>
+    <div>div3</div>
+    <div>div4</div>
+</body>
+</html>

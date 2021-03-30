@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用foreach()方法把类数组对象转换为数组</title>
+    <script>
+        // forEach()方法
+        // window.onload=function(){
+        //     debugger
+        //     var odivs=document.getElementsByTagName("div");
+        //     console.log(odivs) //HTMLCollection(4)[div, div, div, div]
+        //     console.log(typeof(odivs))
+        //     var odivs2 = new Array()
+        //     odivs2=Array.prototype.forEach.call(odivs,function(item,index){
+        //         console.log(item,index);
+        //         // <div>div1</div> 0
+        //         // <div>div2</div> 1
+        //         // <div>div3</div> 2
+        //         // <div>div4</div> 3
+        //     })
+        //     console.log(odivs2)
+        // }
+         
+        // slice()方法
+        window.οnlοad=function(){
+            var odivs=document.getElementsByTagName("div");
+            console.log(odivs)
+            odivs=Array.prototype.slice.call(odivs);
+            odivs1=[].slice.call(odivs);
+            console.log(odivs)
+            console.log(odivs1)
+
+    </script>
+</head>
+<body>
+    <div>div1</div>
+    <div>div2</div>
+    <div>div3</div>
+    <div>div4</div>
+</body>
+</html>
