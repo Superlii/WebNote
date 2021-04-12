@@ -1,0 +1,74 @@
+Vue组件之间传值
+---
+### 父子组件传值
+
+(1)props:{父组件传的值}
+
+(2)事件形式
+
+子组件通过this.$emit('事件名',需要传的值)
+
+父组件定义一个click事件接收值
+
+(3)$parents/$children 与 ref
+
+ref:该属性用在dom元素上指向的是dom元素 该属性在组件上指向的是该组件的实例 this.$refs.变量
+$parents/$children： 两个属性在组件上指向的是该组件的实例 
+
+
+### 兄弟组件传值
+
+#### emit/on
+通过new一个空的vue实例作为中央事件总线(事件中心)
+
+```js
+Event = new Vue()
+
+Event.$emit(事件名,数据)
+Event.$on(事件名,(val) =>{})
+```
+#### vuex/localstorage
+
+vuex是vue的状态管理器 存储的数据是响应式的 但并不会保存下来 刷新滞后回到了初始定义的状态
+具体做法是 在vuex中数据状态改变后把数据备份一份到localStorage中 刷新之后如果localStorage保存有数据 可以替换store中的state
+
+### 跨级传值
+(1)`provide/inject`
+
+注意：数据不是可响应的 需要加监听
+```js
+// 父组件
+export default {
+  provide: {
+    name: 'asd'
+  }
+}
+
+// 其它任意子组件
+export default {
+  inject: ['name'],
+  mounted () {
+    console.log(this.name);  // asd
+  }
+}
+```
+
+(2) `emit/on`
+通过new一个空的vue实例作为中央事件总线(事件中心)
+
+```js
+Event = new Vue()
+
+Event.$emit(事件名,数据)
+Event.$on(事件名,(val) =>{})
+```
+(3)`vuex/localstorage`
+
+vuex是vue的状态管理器 存储的数据是响应式的 但并不会保存下来 刷新滞后回到了初始定义的状态
+具体做法是 在vuex中数据状态改变后把数据备份一份到localStorage中 刷新之后如果localStorage保存有数据 可以替换store中的state
+
+(4)`$attrs/$listeners`
+
+`$attrs与$listeners` 是两个对象，`$attrs` 里存放的是父组件中绑定的非 `Props` 属性，`$listeners`里存放的是父组件中绑定的非原生事件
+
+
